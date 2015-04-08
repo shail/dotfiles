@@ -1,0 +1,55 @@
+# Config Settings
+config defaultToCurrentScreen true
+config windowHintsShowIcons true
+config windowHintsIgnoreHiddenWindows false
+config windowHintsSpread true
+
+# Window Hints
+bind e:cmd hint ASDFJKLQWERTYUIOPCVBN
+
+# Monitor Aliases
+alias mon-laptop 0
+alias one_thunderbolt 1
+alias two_thunderbolt 2
+
+# Window Grid
+bind g:cmd grid padding:5 0:4,2 1:2,2 2:2,2
+
+# Concrete positions
+alias 1-full move screenOriginX;screenOriginY screenSizeX;screenSizeY ${mon-laptop}
+alias 2-full move screenOriginX;screenOriginY screenSizeX;screenSizeY ${one_thunderbolt}
+alias 3-full move screenOriginX;screenOriginY screenSizeX;screenSizeY ${two_thunderbolt}
+
+# Abstract positions
+alias full move screenOriginX;screenOriginY screenSizeX;screenSizeY
+alias lefthalf move screenOriginX;screenOriginY screenSizeX/2;screenSizeY
+alias righthalf move screenOriginX+screenSizeX/2;screenOriginY screenSizeX/2;screenSizeY
+alias topleft corner top-left resize:screenSizeX/2;screenSizeY/2
+alias topright corner top-right resize:screenSizeX/2;screenSizeY/2
+alias bottomleft corner bottom-left resize:screenSizeX/2;screenSizeY/2
+alias bottomright corner bottom-right resize:screenSizeX/2;screenSizeY/2
+alias tophalf move screenOriginX;screenOriginY screenSizeX;screenSizeY/2
+
+# Push Bindings
+bind ;:cmd;shift ${2-full}
+bind ':cmd;shift ${3-full}
+bind up:ctrl;shift push up bar-resize:screenSizeY/2
+bind down:ctrl;shift push down bar-resize:screenSizeY/2
+bind q:ctrl;shift ${topright}
+bind return:shift;cmd ${full}
+bind k:shift;cmd ${tophalf}
+bind h:shift;cmd ${lefthalf}
+bind b:shift;cmd ${bottomleft}
+bind y:shift;cmd ${topleft}
+bind l:shift;cmd ${righthalf}
+bind .:shift;cmd ${bottomright}
+bind p:shift;cmd ${topright}
+bind e:shift;cmd ${1-full}
+
+# Focus Bindings
+bind l:ctrl;shift    focus right
+bind h:ctrl;shift     focus left
+bind k:ctrl;shift       focus up
+bind j:ctrl;shift   focus down
+bind up:cmd;alt;shift   focus behind
+bind down:cmd;alt;shift focus behind
